@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>С Днём Рождения!</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400&display=swap');
+
+    body, html {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #0d1117;
+        font-family: 'Roboto', sans-serif;
+        overflow: hidden;
+    }
+
+    .card {
+        width: 90vw;
+        max-width: 800px;
+        aspect-ratio: 4 / 3;
+        background: linear-gradient(145deg, #1a233b, #0f121a);
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 15px rgba(7, 188, 255, 0.3);
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 20px;
+        animation: floatCard 6s ease-in-out infinite;
+    }
+
+    @keyframes floatCard {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-10px); }
+    }
+
+    .background-text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-family: 'Orbitron', sans-serif;
+        font-size: clamp(5rem, 20vw, 12rem);
+        font-weight: 700;
+        color: rgba(255, 255, 255, 0.03);
+        white-space: nowrap;
+        z-index: 1;
+        user-select: none;
+    }
+
+    .binary-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 200%;
+        height: 200%;
+        color: rgba(7, 188, 255, 0.1);
+        font-family: monospace;
+        font-size: 12px;
+        line-height: 1.2;
+        word-break: break-all;
+        z-index: 2;
+        user-select: none;
+        animation: scrollBinary 20s linear infinite;
+    }
+
+    @keyframes scrollBinary {
+        from { transform: translateY(0); }
+        to { transform: translateY(-50%); }
+    }
+
+    .content {
+        position: relative;
+        z-index: 4;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .shield-icon {
+        width: 140px;
+        height: 140px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 3;
+        opacity: 0.15;
+        filter: drop-shadow(0 0 20px rgba(7, 188, 255, 0.7));
+        animation: pulseShield 5s infinite ease-in-out;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+    }
+
+    @keyframes pulseShield {
+        0%, 100% {
+            transform: translate(-50%, -50%) scale(1) rotate(0deg);
+            opacity: 0.15;
+        }
+        50% {
+            transform: translate(-50%, -50%) scale(1.5) rotate(5deg);
+            opacity: 0.4;
+        }
+    }
+
+    h1 {
+        font-family: 'Orbitron', sans-serif;
+        font-size: clamp(1.8rem, 5vw, 3rem);
+        font-weight: 700;
+        color: #ffffff;
+        margin: 0;
+        text-shadow: 0 0 5px #fff,
+                     0 0 10px #fff,
+                     0 0 20px #07bcff,
+                     0 0 40px #07bcff;
+        animation: neonGlow 3s infinite ease-in-out;
+    }
+
+    @keyframes neonGlow {
+        0%, 100% {
+            text-shadow: 0 0 5px #fff,
+                         0 0 10px #fff,
+                         0 0 20px #07bcff,
+                         0 0 40px #07bcff;
+        }
+        50% {
+            text-shadow: 0 0 2px #fff,
+                         0 0 5px #07bcff,
+                         0 0 15px #07bcff,
+                         0 0 25px #07bcff;
+        }
+    }
+
+    /* Анимация трещины */
+    .shield-crack {
+        animation: crack 1s forwards;
+    }
+
+    @keyframes crack {
+        0% { transform: translate(-50%, -50%) scale(1); opacity: 0.8; }
+        50% { transform: translate(-50%, -50%) scale(1.8) rotate(15deg); opacity: 0.6; }
+
+Ivan Zaiko, [03.09.2025 18:50]
+100% { transform: translate(-50%, -50%) scale(2.3) rotate(-15deg); opacity: 0; }
+    }
+
+    /* Вылетающие цифры */
+    .digit {
+        position: absolute;
+        font-family: monospace;
+        font-size: 20px;
+        font-weight: bold;
+        color: #07bcff;
+        text-shadow: 0 0 5px #07bcff, 0 0 10px #07bcff;
+        opacity: 1;
+        animation: fly 1.5s forwards ease-out;
+        pointer-events: none;
+        z-index: 5;
+    }
+
+    @keyframes fly {
+        from { opacity: 1; transform: translate(0,0) scale(1); }
+        to { opacity: 0; transform: translate(var(--dx), var(--dy)) scale(0.5); }
+    }
+
+    /* Поздравление после эффекта */
+    .congrats {
+        position: absolute;
+        bottom: 10%;
+        left: 50%;
+        transform: translateX(-50%);
+        font-family: 'Roboto', sans-serif;
+        font-size: clamp(1rem, 2.8vw, 1.6rem);
+        color: #ffffff;
+        text-align: center;
+        opacity: 0;
+        line-height: 1.6;
+        width: 85%;
+        animation: fadeIn 2s forwards;
+        z-index: 6;
+        text-shadow: 0 0 5px #07bcff, 0 0 15px #07bcff;
+    }
+
+    @keyframes fadeIn {
+        0% { opacity: 0; transform: translate(-50%, 20px); }
+        100% { opacity: 1; transform: translate(-50%, 0); }
+    }
+</style>
+</head>
+<body>
+
+<div class="card">
+    <div class="background-text">СЛУЖБА ИБ</div>
+    <div class="binary-overlay" id="binary-code"></div>
+
+    <svg class="shield-icon" id="shield" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2L3 5V11C3 16.5 7.5 21.5 12 23C16.5 21.5 21 16.5 21 11V5L12 2Z" stroke="#07bcff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M12 11.1339C13.1728 11.1339 14.1339 10.1728 14.1339 9C14.1339 7.82721 13.1728 6.86609 12 6.86609C10.8272 6.86609 9.86609 7.82721 9.86609 9C9.86609 10.1728 10.8272 11.1339 12 11.1339Z" stroke="#07bcff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M12 14.4668C10.3431 14.4668 9 15.8099 9 17.4668V18.1334H15V17.4668C15 15.8099 13.6569 14.4668 12 14.4668Z" stroke="#07bcff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+
+    <div class="content">
+        <h1>С Днём Рождения, Александр Юрьевич!</h1>
+    </div>
+</div>
+
+<script>
+    // Генерация случайного бинарного кода для фона
+    function generateBinary() {
+        const binaryContainer = document.getElementById('binary-code');
+        if (!binaryContainer) return;
+        const containerSize = binaryContainer.offsetWidth * binaryContainer.offsetHeight;
+        const charCount = Math.min(containerSize / 10, 10000); 
+        let binaryString = '';
+        for (let i = 0; i < charCount; i++) {
+            binaryString += Math.round(Math.random()) + (Math.random() > 0.5 ? ' ' : '');
+        }
+        binaryContainer.textContent = binaryString;
+    }
+    
+    window.onload = generateBinary;
+    window.onresize = generateBinary;
+
+    // Щелчок по щиту: треск + вылетающие цифры + поздравление
+    const shield = document.getElementById("shield");
+    shield.addEventListener("click", () => {
+        shield.classList.add("shield-crack");
+        
+        // Вылетающие цифры
+        for (let i = 0; i < 40; i++) {
+            const digit = document.createElement("div");
+            digit.classList.add("digit");
+            digit.textContent = Math.round(Math.random());
+            document.body.appendChild(digit);
+            const rect = shield.getBoundingClientRect();
+            digit.style.left = rect.left + rect.width / 2 + "px";
+            digit.style.top = rect.top + rect.height / 2 + "px";
+            const angle = Math.random() * 2 * Math.PI;
+            const distance = 100 + Math.random() * 150;
+            digit.style.setProperty("--dx", `${Math.cos(angle) * distance}px`);
+            digit.style.setProperty("--dy", `${Math.sin(angle) * distance}px`);
+            digit.addEventListener("animationend", () => digit.remove());
+        }
+
+        // Поздравление
+        setTimeout(() => {
+            const congrats = document.
+
+Ivan Zaiko, [03.09.2025 18:50]
+createElement("div");
+            congrats.classList.add("congrats");
+            congrats.innerHTML = `
+                🎉 Пусть каждый день приносит радость,<br>
+                новые достижения и уверенность в силах!<br>
+                Желаю успехов и дальнейших свершений! 🚀
+            `;
+            document.querySelector(".card").appendChild(congrats);
+        }, 1200);
+    });
+</script>
+
+</body>
+</html>
